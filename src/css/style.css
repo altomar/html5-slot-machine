@@ -1,13 +1,20 @@
+:root {
+  --width: 720px;
+}
+
 body,
 html {
   width: 100%;
   height: 100%;
 }
+
 body {
   padding: 10px;
-  background-image: url("../assets/bg.jpg");
-  background-size: cover;
+  /*background-image: url("../assets/bg.jpg");
+  background-size: cover;*/
+  background-color: white;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 24px;
@@ -15,12 +22,17 @@ body {
 }
 
 #slot {
-  width: 1200px;
+  width: var(--width);
   margin: 0 auto;
+  border: 1px solid darkslategray;
+}
+
+#subs-form {
+  /*width: var(--width);*/
 }
 
 #reels {
-  width: 1200px;
+  width: 720px;
   height: 720px;
   display: flex;
   flex-flow: row nowrap;
@@ -47,15 +59,15 @@ body {
 #controls {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
-  height: 50px;
-  display: flex;
+  /*height: 50px;
+    display: flex;*/
   justify-content: space-between;
   align-items: center;
   padding: 5px 30px;
 }
 
 #controls label {
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   margin: 0;
 }
@@ -83,19 +95,30 @@ input[type="checkbox"] {
   transform: scaleY(-1);
 }
 
+.hidden {
+  display: none;
+}
+
 @media only screen and (max-width: 1200px) {
   body {
-    background-image: url("../assets/bg_small.jpg");
+    /*background-image: url("../assets/bg_small.jpg");*/
   }
-  #slot {
-    width: 100%;
+
+  :root {
+    --width: 100%;
   }
+
   #reels {
     width: 100%;
-    height: 576px;
+    height: 100vw;
   }
+
+  .reel > .icons {
+    /*height: 33%;*/
+  }
+
   .reel > .icons > img {
-    width: 192px;
-    height: 192px;
+    width: 100%;
+    height: 100%;
   }
 }
