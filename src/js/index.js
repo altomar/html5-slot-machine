@@ -6,11 +6,18 @@ window.onload = () => {
     award: "at_at",
   };
 
-  const slot = new Slot(document.getElementById("slot"), config);
+  const slot = new Slot($("#slot")[0], config, $("#spin")[0], false);
   slot.award = "diamond";
 
+  // const slotWin = new Slot($("#slotWin")[0], config, $("#spinWin")[0], true);
+  // slotWin.award = "seven";
+
   // form
+
+  var spinsLeft = $("#spins-left")[0];
+
   var message = $("#error_message").parent();
+  var $errorMessage = $("#error_message");
 
   $("#btn-submit").click(function () {
     var email = $("input[name=email]").val();
@@ -41,24 +48,23 @@ window.onload = () => {
     } else if (name == "" || !name.match(letters)) {
       document.getElementById("name").classList.add("wrong-border");
       message.show();
-      document.getElementById("error_message").innerHTML = nameError;
+      $errorMessage.html(nameError);
       return false;
     } else {
       if (number == "" && email == "") {
         message.show();
-        document.getElementById("error_message").innerHTML = emptyfield;
+        d$errorMessage.html(emptyfield);
         return false;
       } else {
         if (number == "" && email != "") {
           if (!email.match(valid_email)) {
             document.getElementById("email").classList.add("wrong-border");
-            document.getElementById("error_message").innerHTML = emailError;
+            $errorMessage.html(emailError);
             message.show();
             return false;
           } else {
             if (!document.getElementById("checkbox").checked) {
-              document.getElementById("error_message").innerHTML =
-                checkboxError;
+              $errorMessage.html(checkboxError);
               document
                 .getElementById("label-checkbox")
                 .classList.add("wrong-text");
@@ -71,13 +77,12 @@ window.onload = () => {
         } else if (number != "" && email == "") {
           if (!number.match(numbers)) {
             document.getElementById("phone").classList.add("wrong-border");
-            document.getElementById("error_message").innerHTML = numberError;
+            $errorMessage.html(numberError);
             message.show();
             return false;
           } else {
             if (!document.getElementById("checkbox").checked) {
-              document.getElementById("error_message").innerHTML =
-                checkboxError;
+              $errorMessage.html(checkboxError);
               document
                 .getElementById("label-checkbox")
                 .classList.add("wrong-text");
@@ -89,7 +94,7 @@ window.onload = () => {
           }
         } else if (number != "" && email != "") {
           if (!document.getElementById("checkbox").checked) {
-            document.getElementById("error_message").innerHTML = checkboxError;
+            $errorMessage.html(checkboxError);
             document
               .getElementById("label-checkbox")
               .classList.add("wrong-text");
@@ -117,16 +122,26 @@ window.onload = () => {
           ref_url: refurl,
           timestamp: timestamp,
           country: country,
+          birthday: birthday,
         },
         success: function (res) {
           if (res == "FAIL") {
-            document.getElementById("error_message").innerHTML =
-              "Please try again later :(";
+            // document.getElementById("error_message").innerHTML = "Please try again later :(";
+            $errorMessage.html("Good luck!");
             message.show();
+            console.log(birthday, name, email);
+            $("#slot").hide();
+            $("#slotWin").show();
+            const slotWin = new Slot(
+              $("#slotWin")[0],
+              config,
+              $("#spinWin")[0],
+              true
+            );
+            slotWin.award = "seven";
           } else {
             message.removeClass("is-danger").addClass("is-success");
-            document.getElementById("error_message").innerHTML =
-              "Thanks for subscribing!";
+            $errorMessage.html("Thanks for subscribing!");
             message.show();
           }
         },

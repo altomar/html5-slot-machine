@@ -14,14 +14,14 @@
   </head>
 
   <body>
-    <div id="slot">
-      <div id="jackpot">Slots Widget</div>
-      <div id="reels">
+    <div id="slot" class="slot">
+      <div id="jackpot" class="jackpot">Slots Widget</div>
+      <div id="reels" class="reels">
         <div class="reel"></div>
         <div class="reel"></div>
         <div class="reel"></div>
       </div>
-      <div id="controls">
+      <div id="controls" class="controls">
         <button type="button" id="spin">SPIN</button>
         <form id="subs-form" target="dummyframe">
           <div class="field hidden" id="fieldBirthday">
@@ -50,6 +50,8 @@
           </div>
           <div id="fieldEmail" class="hidden">
             <div class="field">
+              <p>Oh no... you didn't win this time D:</p>
+              <p>Fill out your email and get 3 FREE extra spins!</p>
               <label for="email" class="label">E-mail</label>
               <div class="control">
                 <input
@@ -72,8 +74,8 @@
                 time();?
               />
             </div>
-            <label class="checkbox" id="label-checkbox"
-              ><input type="checkbox" id="checkbox" /><span class="checkmark">
+            <label class="checkbox" id="label-checkbox">
+              <input type="checkbox" id="checkbox" /><span class="checkmark">
               </span>
               I accept to receive more great bonuses in my inbox.
               <p>
@@ -98,9 +100,23 @@
         </form>
       </div>
     </div>
-    <div class="message is-danger is-light mt-0" style="">
+
+    <div id="slotWin" style="display: none">
+      <div id="jackpot">Slots Widget</div>
+      <div id="reels">
+        <div class="reel"></div>
+        <div class="reel"></div>
+        <div class="reel"></div>
+      </div>
+      <div id="controls">
+        <button type="button" id="spinWin">SPIN</button>
+      </div>
+    </div>
+
+    <div class="message" style="">
       <div class="message-body" id="error_message"></div>
     </div>
+    <!-- <div id="spins-left"></div> -->
     <script
       crossorigin="anonymous"
       src="https://polyfill.io/v3/polyfill.min.js?features=default%2CWebAnimations"
