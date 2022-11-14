@@ -10,6 +10,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
+    writeToDisk: true,
   },
   performance: {
     hints: false,
@@ -18,8 +19,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      minify: false,
     }),
   ],
+  mode: "development",
   module: {
     rules: [
       {

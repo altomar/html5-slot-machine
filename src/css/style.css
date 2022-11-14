@@ -22,7 +22,7 @@ body {
 }
 
 .slot {
-  width: var(--width);
+  /*width: var(--width);*/
   margin: 0 auto;
   border: 1px solid darkslategray;
 }
